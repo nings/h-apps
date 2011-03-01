@@ -1,0 +1,2 @@
+sudo cp myapplication /usr/local/haggle/bin/
+tar zcvf myapplication-2.tar.gz myapplication
