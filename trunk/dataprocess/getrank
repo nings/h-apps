@@ -1,0 +1,3 @@
+#cat average.FLOOD.relaystat.Camb.dat | awk '{ print "\"" $1 "\":\"" $3 "\"" }'
+
+cat average.FLOOD.relaystat.Camb.dat | awk '{ print  $1 ":" $3 ","  }' > camrank
