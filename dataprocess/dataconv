@@ -1,0 +1,6 @@
+#! /bin/sh
+awk -f inf.awk $1 > c1
+awk -f cam.awk c1 > c2
+awk -f div6.awk c2 > $2 
+
+rm c1 c2
