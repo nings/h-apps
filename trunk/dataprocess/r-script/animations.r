@@ -1,6 +1,6 @@
 library(igraph) ;library(Cairo)
 
-g <- read.graph("~/r-script/camconn.trc", format="pajek")
+g <- read.graph("~/svn/h-apps/dataprocess/r-script/camconn.net", format="pajek")
 l <- layout.kamada.kawai(g, niter=1000)
 ebc <- edge.betweenness.community(g)
 

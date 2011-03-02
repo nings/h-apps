@@ -1,6 +1,6 @@
 library(igraph) ; library(Cairo)
 
-g <- barabasi.game(100, power=0.6, m=10)
+g <- read.graph("~/svn/h-apps/dataprocess/r-script/camconn.net", format="pajek")
 V(g)$name <- seq(vcount(g))-1
 g <- simplify(g)
 l <- layout.fruchterman.reingold(g)
@@ -10,7 +10,9 @@ fcs <- fastgreedy.community(simplify(as.undirected(g)))
 Q <- round(max(fcs$modularity), 3)
 fcs <- community.to.membership(g, fcs$merges, steps=which.max(fcs$modularity)-1 )
 
-CairoX11() # or CairoPNG(file="fastgreedy.png")
+# CairoX11() # or CairoPNG(file="fastgreedy.png")
+
+# CairoPNG(file="fastgreedy.png")
 
 plot(g, layout=l, vertex.size=3, vertex.label=NA, vertex.color="#ff000033",
      vertex.frame.color="#ff000033", edge.color="#55555533", edge.arrow.size=0.3,
@@ -20,6 +22,7 @@ plot(g, layout=l, vertex.size=3, vertex.label=NA, vertex.color="#ff000033",
 g2 <- subgraph(g, which(fcs$membership==fcs$membership[1])-1)
 l2 <- l[ which(fcs$membership==fcs$membership[1]), ]
 
+
 plot(g2, layout=l2, vertex.size=3, vertex.label=V(g2)$name,
      vertex.color="#ff0000", vertex.frame.color="#ff0000", edge.color="#555555",
      vertex.label.dist=0.5, vertex.label.cex=0.8, vertex.label.font=2,
@@ -28,5 +31,4 @@ plot(g2, layout=l2, vertex.size=3, vertex.label=V(g2)$name,
 nodes <- which(fcs$membership==fcs$membership[1])-1
 nodes <- paste(collapse=", ", nodes)
 text(0,-1.3, nodes, col="blue")
-
 # dev.off()

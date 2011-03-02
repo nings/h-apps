@@ -1,6 +1,6 @@
 library(igraph)
 
-g <- barabasi.game(100000)
+g <- read.graph("~/svn/h-apps/dataprocess/r-script/camconn.net", format="pajek")
 d <- degree(g, mode="in")
 dd <- degree.distribution(g, mode="in", cumulative=TRUE)
 alpha <- power.law.fit(d, xmin=20)
