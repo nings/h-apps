@@ -1,6 +1,6 @@
 library(igraph)
 
-g <- read.graph("~/r-script/camconn.trc", format="pajek")
+g <- read.graph("~/svn/h-apps/dataprocess/r-script/camconn.net", format="pajek")
 d <- get.diameter(g)
 
 E(g)$color <- "grey"
